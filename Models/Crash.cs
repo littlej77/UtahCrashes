@@ -10,7 +10,12 @@ namespace UtahCrashes.Models
     {
         [Key]
         [Required]
+<<<<<<< Updated upstream
         public string Crash_ID { get; set; }
+=======
+        public int Crash_ID { get; set; }
+        public DateTime Crash_DateTime { get; set; }
+>>>>>>> Stashed changes
         public string Route { get; set; }
         public double MilePoint { get; set; }
 
@@ -18,7 +23,11 @@ namespace UtahCrashes.Models
         public double Long_Utm_X { get; set; }
         public string Main_Road_Name { get; set; }
         public string City { get; set; }
-        public string County_Name { get; set; }
+
+
+        public int County_ID { get; set; }
+        public County County { get; set; }
+
         public int Crash_Severity_ID { get; set; }
 
         public int Work_Zone_Related { get; set; }
