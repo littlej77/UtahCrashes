@@ -11,7 +11,7 @@ namespace UtahCrashes.Models
         [Key]
         [Required]
 <<<<<<< Updated upstream
-        public string Crash_ID { get; set; }
+        public int Crash_ID { get; set; }
 =======
         public int Crash_ID { get; set; }
         public DateTime Crash_DateTime { get; set; }

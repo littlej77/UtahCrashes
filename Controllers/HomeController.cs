@@ -87,17 +87,13 @@ namespace UtahCrashes.Controllers
         {
             return View();
         }
-
-<<<<<<< Updated upstream
         public IActionResult CrashMaps()
         {
             return View();
         }
-        public IActionResult Privacy()
-=======
+
         // ranks the features and how they contribute to crash severity
         public IActionResult CrashFeatures()
->>>>>>> Stashed changes
         {
             return View();
         }
