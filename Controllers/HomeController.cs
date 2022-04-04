@@ -33,6 +33,10 @@ namespace UtahCrashes.Controllers
             return View();
         }
 
+        public IActionResult Summary()
+        {
+            return View();
+        }
 
         public IActionResult Privacy()
         {
