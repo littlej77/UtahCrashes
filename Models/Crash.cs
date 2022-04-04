@@ -11,7 +11,6 @@ namespace UtahCrashes.Models
         [Key]
         [Required]
         public string Crash_ID { get; set; }
-        public DateTime Crash_DateTime { get; set; }
         public string Route { get; set; }
         public double MilePoint { get; set; }
 
@@ -42,5 +41,12 @@ namespace UtahCrashes.Models
         public int Distracted_Driving { get; set; }
         public int Drowsy_Driving { get; set; }
         public int Roadway_Departure { get; set; }
+        public string Dates { get; set; }
+        public string Time { get; set; }
+        public int Day { get; set; }
+        public int Month { get; set; }
+        public int Year { get; set; }
+        public int Hour { get; set; }
+        public int Min { get; set; }
     }
 }
