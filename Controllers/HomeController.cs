@@ -23,6 +23,17 @@ namespace UtahCrashes.Controllers
             return View();
         }
 
+        public IActionResult CrashCalc()
+        {
+            return View();
+        }
+
+        public IActionResult CrashFeatures()
+        {
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
