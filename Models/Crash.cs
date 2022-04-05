@@ -18,7 +18,7 @@ namespace UtahCrashes.Models
         public double Long_Utm_X { get; set; }
         public string Main_Road_Name { get; set; }
         public string City { get; set; }
-        public string County_Name { get; set; }
+        public string County_Name { get; set; } 
         public int Crash_Severity_ID { get; set; }
 
         public int Work_Zone_Related { get; set; }
