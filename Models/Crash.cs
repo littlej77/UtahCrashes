@@ -10,12 +10,8 @@ namespace UtahCrashes.Models
     {
         [Key]
         [Required]
-<<<<<<< Updated upstream
-        public int Crash_ID { get; set; }
-=======
         public int Crash_ID { get; set; }
         public DateTime Crash_DateTime { get; set; }
->>>>>>> Stashed changes
         public string Route { get; set; }
         public double MilePoint { get; set; }
 
