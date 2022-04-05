@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UtahCrashes.Data;
+using UtahCrashes.Models;
 
 namespace UtahCrashes
 {
@@ -28,12 +29,21 @@ namespace UtahCrashes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
+                options.UseMySql(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddDbContext<CrashesDbContext>(options =>
+            {
+                options.UseMySql(Configuration["ConnectionStrings:UtahCrashesDbConnection"]);
+            });
+
+            services.AddScoped<ICrashesRepository, EFCrashesRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,8 +71,16 @@ namespace UtahCrashes
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    "county",
+                    "{county}",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapDefaultControllerRoute();
+
                 endpoints.MapRazorPages();
             });
         }
