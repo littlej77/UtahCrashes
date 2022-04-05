@@ -13,6 +13,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.23" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.23" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +24,7 @@
     <None Remove="Models\ViewModels\" />
     <None Remove="Views\Shared\Components\" />
     <None Remove="Views\Shared\Components\County\" />
+    <None Remove="Microsoft.AspNetCore.Identity" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Components\" />

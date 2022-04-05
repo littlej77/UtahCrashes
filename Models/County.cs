@@ -7,7 +7,7 @@ namespace UtahCrashes.Models
     {
         [Key]
         [Required]
-        public string County_ID { get; set; }
-        public DateTime County_Name { get; set; }
+        public int County_ID { get; set; }
+        public string County_Name { get; set; }
     }
 }

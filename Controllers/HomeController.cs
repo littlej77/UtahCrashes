@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using UtahCrashes.Models;
+using UtahCrashes.Models.ViewModels;
 
 namespace UtahCrashes.Controllers
 {
@@ -26,9 +27,30 @@ namespace UtahCrashes.Controllers
         }
 
         // displays all the crashes (with pagination and filtering by county)
-        public IActionResult Summary()
+        public IActionResult Summary(string county, int pageNum =1)
         {
-            return View();
+            int pageSize = 10;
+
+            var x = new CrashesViewModel
+            {
+                Crashes = repo.Crashes
+                .Where(c => c.County.County_Name == county || county == null)
+                .OrderBy(c => c.Crash_ID)
+                .Skip((pageNum - 1) * pageSize)
+                .Take(pageSize),
+
+                PageInfo = new PageInfo
+                {
+                    TotalNumCrashes =
+                        (county == null
+                            ? repo.Crashes.Count()
+                            : repo.Crashes.Where(x => x.County.County_Name == county).Count()),
+                    CrashesPerPage = pageSize,
+                    CurrentPage = pageNum
+                }
+            };
+
+            return View(x);
         }
 
         [HttpGet]

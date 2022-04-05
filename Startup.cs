@@ -29,13 +29,12 @@ namespace UtahCrashes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(
-                    Configuration.GetConnectionString("DefaultConnection")));
-
+            options.UseMySql(
+                Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
             services.AddControllersWithViews();
+            services.AddRazorPages();
 
             services.AddDbContext<CrashesDbContext>(options =>
             {
@@ -43,8 +42,6 @@ namespace UtahCrashes
             });
 
             services.AddScoped<ICrashesRepository, EFCrashesRepository>();
-
-            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,7 +70,7 @@ namespace UtahCrashes
             {
                 endpoints.MapControllerRoute(
                     "county",
-                    "{county)",
+                    "{county}",
                     new { Controller = "Home", action = "Index" });
 
                 endpoints.MapControllerRoute(
