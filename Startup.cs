@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UtahCrashes.Data;
+using UtahCrashes.Models;
 
 namespace UtahCrashes
 {
@@ -30,9 +31,19 @@ namespace UtahCrashes
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
             services.AddControllersWithViews();
+
+            services.AddDbContext<CrashesDbContext>(options =>
+            {
+                options.UseMySql(Configuration["ConnectionStrings:UtahCrashesDbConnection"]);
+            });
+
+            services.AddScoped<ICrashesRepository, EFCrashesRepository>();
+
             services.AddRazorPages();
         }
 
@@ -61,8 +72,16 @@ namespace UtahCrashes
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
+                    "county",
+                    "{county)",
+                    new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapDefaultControllerRoute();
+
                 endpoints.MapRazorPages();
             });
         }
